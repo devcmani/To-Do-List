@@ -1,0 +1,32 @@
+.contain{
+    height: 100vh;
+    background-color: aqua;
+}
+
+.contain h1{
+    color: red;
+}
+
+.todo{
+    justify-content: center;
+    position: relative;
+    left: 22%;
+}
+
+.todo h3{
+    text-align: center;
+    padding: 62px 1px;
+    color: chocolate;
+    font-family: cursive;
+}
+
+.secti{
+    text-align: center;
+    padding: 42px!important;
+    font-family: monospace;
+
+}
+
+.table{
+    border: 2px solid rebeccapurple;
+}

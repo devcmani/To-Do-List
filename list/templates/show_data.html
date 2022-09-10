@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}Todo List {% endblock  %}
+{% block content %}
+
+{% load static %}
+<style>
+    .tabb{
+        height: 100vh;
+    }
+</style>
+
+{% if msg %}
+
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>{{msg}}</strong> 
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+<div class="container-fluid">
+    <img src="{% static 'images/image1.jpg' %}" class="img-fluid" alt="...">
+</div>
+
+<div class="container tabb">
+    <div class="secti my-3">
+    <h2>Works To Be Done</h2>
+
+    </div>
+    <table class="table my-3">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">S.no</th>
+            <th scope="col">Work</th>
+            <th scope="col">Description</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for details in data %}
+          <tr>
+            <th scope="row">{{details.id}}</th>
+            <td>{{details.heading}}</td>
+            <td>{{details.description}}</td>
+            <td>{{details.status}}</td>
+            <td><a class="btn btn-secondary" href="/update/{{details.id}}">Update</a>
+            <a class="btn btn-danger" href="/delete/{{details.id}}">Delete</a></td>
+            
+          </tr>
+          {% endfor %}
+          
+        </tbody>
+      </table>
+</div>
+
+
+
+{% endblock  %}

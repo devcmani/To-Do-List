@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block title %} update {% endblock%}
+
+{% block content %}
+
+
+{% load static %}
+
+{% if msg != "" %}
+
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>{{msg}}</strong> 
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+      <div class="container-fluid">
+
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="{% static 'images/image1.jpg' %}" class="d-block w-100" alt="my image">
+              </div>
+              <div class="carousel-item">
+                <img src="{% static 'images/image2.jpg' %}" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="..." class="d-block w-100" alt="...">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+
+      </div>
+
+      <div class="row my-3 col-md-8 todo">
+        <div>
+          <h3>
+            Write what u want to do .
+          </h3>
+
+        </div>
+        {% if var %}
+        <form action="{% url 'updating' id=var.id %}" method="post">
+          {% csrf_token %}
+        <div class="mb-3 ">
+          <label for="heading" class="form-label">Heading</label>
+          <input type="text" class="form-control" id="heading" name="heading" value="{{var.heading}}" placeholder="Write heading here" required>
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea class="form-control" id="description" name="description" rows="5"  placeholder="Enter the description of the work" required >{{var.description}}</textarea>
+        </div>
+        <div class="mb-3 ">
+          <label for="status" class="form-label">Status</label>
+          <select name="status" id="status" class="form-control" required>
+            <option value="{{var.status}}">{{var.status}}</option>
+            {% comment %} <option value="Pending">Pending</option> {% endcomment %}
+            <option value="Completed">Completed</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary form-control">Submit</button>
+      </div>
+    </form>
+    {% endif %}
+    {% endblock %}
